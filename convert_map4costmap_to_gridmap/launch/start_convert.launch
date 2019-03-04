@@ -1,0 +1,36 @@
+<!-- -->
+<launch>
+    <arg name="resolution" default="0.15w" />
+    <arg name="map_width" default="200" />
+    <arg name="map_height" default="200" />
+    <arg name="points_topic" default="/globalmap/map_for_costmap" />
+    <arg name="offset_x" default="0" />
+    <arg name="offset_y" default="-20" />
+    <arg name="offset_z" default="-2.0" />
+    <arg name="height_limit" default="20.0" />
+    <arg name="car_width" default="0.5" />
+    <arg name="car_length" default="0.5" />
+    <arg name="filter" default="true" />
+    <arg name="cost_base" default="25" />
+
+    <node pkg="convert_map4costmap_to_gridmap" type="load_pcd_file" name="load_pcd_file" output="screen">
+        <param name="pcd_file" value="$(find convert_map4costmap_to_gridmap)/pcd_file/zetong.pcd"/>
+    </node>
+
+    <node pkg="convert_map4costmap_to_gridmap" type="convert_map4costmap_to_gridmap_node" name="convert_map4costmap_to_gridmap" output="screen">
+        <param name="resolution" value="$(arg resolution)" />
+        <param name="map_width" value="$(arg map_width)" />
+        <param name="map_height" value="$(arg map_height)" />
+        <param name="points_topic" value="$(arg points_topic)" />
+        <param name="offset_x" value="$(arg offset_x)" />
+        <param name="offset_y" value="$(arg offset_y)" />
+        <param name="offset_z" value="$(arg offset_z)" />
+        <param name="height_limit" value="$(arg height_limit)" />
+        <param name="car_width" value="$(arg car_width)" />
+        <param name="car_length" value="$(arg car_length)" />
+        <param name="filter" value="$(arg filter)" />
+        <param name="cost_base" value="$(arg cost_base)" />
+    </node>
+
+</launch>
+

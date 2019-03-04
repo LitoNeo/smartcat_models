@@ -1,0 +1,11 @@
+<launch>
+    <node pkg="map_server" type="map_server" name="map_server_node" args="$(find extract_globalpath)/map_file/map.yaml"/>
+    <node pkg="rviz" type="rviz" name="Rviz_for_extract_path" args="-d $(find extract_globalpath)/rviz/test.rviz" />
+    <node pkg="extract_globalpath" type="extract_whole_node" name="extract_whole_node" output="screen">
+        <param name="path_file" value="$(find extract_globalpath)/path_file/path.csv"/>
+        <param name="path_prefix" value="$(find extract_globalpath)/path_file/" />
+        <param name="weight_data" value="0.47" />
+        <param name="weight_smooth" value="0.2" />
+        <param name="tolerance" value="0.1" />
+    </node>
+</launch>

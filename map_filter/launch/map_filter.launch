@@ -1,0 +1,11 @@
+<!-- -->
+<launch>
+    <node pkg="rqt_reconfigure" type="rqt_reconfigure" name="map_filter_reconfigure" />
+    <node pkg="map_filter" type="map_filter_node" name="map_filter_node" output="screen">
+        <param name="leaf_size" value="0.3" />
+        <param name="in_pcd_file" value="$(find static_map)/map_file/map/carla.pcd"/>
+        <param name="out_pcd_file" value="$(find map_filter)/out_file/carla_filtered.pcd"/>
+    </node>
+
+</launch>
+
