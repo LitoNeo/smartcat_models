@@ -13,7 +13,7 @@ sensor_msgs
 find_package(PCL 1.7 REQUIRED)
 
 catkin_package(
-  INCLUDE_DIRS include
+  # INCLUDE_DIRS include
   CATKIN_DEPENDS roscpp sensor_msgs pcl_ros
 )
 

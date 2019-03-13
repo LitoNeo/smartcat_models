@@ -21,7 +21,7 @@ generate_dynamic_reconfigure_options(
 
 
 catkin_package(
-  INCLUDE_DIRS include
+  # INCLUDE_DIRS include
   LIBRARIES convert_map4costmap_to_gridmap
   CATKIN_DEPENDS nav_msgs pcl_ros roscpp rospy sensor_msgs
   #  DEPENDS system_lib

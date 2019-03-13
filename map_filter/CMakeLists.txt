@@ -35,7 +35,7 @@ generate_dynamic_reconfigure_options(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
- INCLUDE_DIRS include
+#  INCLUDE_DIRS include
  LIBRARIES map_filter
  CATKIN_DEPENDS pcl_ros roscpp rospy sensor_msgs std_msgs
  DEPENDS system_lib PCL
