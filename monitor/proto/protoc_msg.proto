@@ -6,6 +6,8 @@ enum MsgType{
     current_pose = 1;
     lidar_vlp16 = 2;
     camera_0 = 3;
+    vehicle_stat = 4;
+    ndt_stat = 5;
 }
 
 message BaseMsg{

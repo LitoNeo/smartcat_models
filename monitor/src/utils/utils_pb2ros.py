@@ -1,7 +1,8 @@
 # !/usr/bin/python
 # -*- coding:utf-8 -*-
 
-import protoc_msg_pb2
+# import protoc_msg_pb2
+from proto import protoc_msg_pb2
 from geometry_msgs.msg import PoseStamped, Pose, Point, Quaternion
 from std_msgs.msg import Header
 
@@ -12,7 +13,6 @@ def PoseStamped2Msg(proto_ps, msg):
 
     Header2Msg(proto_ps.header, msg.header)
     Pose2Msg(proto_ps.pose, msg.pose)
-    print "pose finished"
 
 
 def Header2Msg(proto_header, header):

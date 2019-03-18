@@ -1,14 +1,13 @@
 # !/usr/bin/python
 # -*- coding:utf-8 -*-
 
+import sys
+sys.path.append("../protoc/")
 import socket
-import google.protobuf
 import protoc_msg_pb2
-import time
 import threading
-import utils_pb2ros
-from geometry_msgs.msg import PoseStamped, Pose, Point, Quaternion
-from std_msgs.msg import Header
+from src.utils import utils_pb2ros
+from geometry_msgs.msg import PoseStamped
 
 
 class TCPServer:

@@ -1,14 +1,17 @@
-# !/usr/bin/python
-# -*- coding:utf-8 -*-
+#!/usr/bin/python
+#-*- coding:utf-8 -*-
+
+import os  # python引入别处目录中的文件
+import sys
+proto_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, proto_path + '/proto')
+
+from proto import protoc_msg_pb2
+# import protoc_msg_pb2
 import rospy
 from geometry_msgs.msg import PoseStamped
-
-import sys
 import socket
-import google.protobuf
-import protoc_msg_pb2
-import yaml
-import utils
+from src.utils import utils
 
 
 # class CurrentPoseMonitor_TCP(object):
@@ -72,7 +75,7 @@ class CurrentPoseMonitor_UDP(object):
     def __init__(self, sock, target):
         self.sock = sock
         self.target = target
-        print("UDP socket is ready to transport...")
+        print("UDP socket is ready monitor current pose...")
 
     def handle(self, msg):
         assert isinstance(msg, PoseStamped)
@@ -90,15 +93,17 @@ class Monitor_UDP(object):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.udp_server = self._init_socket()
 
-        self.current_pose_monitor = CurrentPoseMonitor_UDP(self.sock, self.udp_server)
+        self.current_pose_monitor = CurrentPoseMonitor_UDP(
+            self.sock, self.udp_server)
 
     def _init_socket(self):
-        server_ip = rospy.get_param("server_ip", '192.168.43.42')
+        server_ip = rospy.get_param("server_ip", '127.0.0.1')
         server_port = rospy.get_param("server_port", 9999)
         return server_ip, server_port
 
     def _add_sub(self):
-        rospy.Subscriber("/ndt/current_pose", PoseStamped, self._current_pose_cb)
+        rospy.Subscriber("/ndt/current_pose", PoseStamped,
+                         self._current_pose_cb)
 
     def _current_pose_cb(self, msg):
         self.current_pose_monitor.handle(msg)
@@ -112,6 +117,10 @@ class Monitor_UDP(object):
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         # TODO: 判断当前socket状态,以确认是否需要关闭操作
+        try:
+            self.sock.close()
+        except Exception as e:
+            print e
         return self
 
 

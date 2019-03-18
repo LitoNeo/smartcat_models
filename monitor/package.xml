@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>monitor</name>
+  <name>gateway</name>
   <version>0.0.0</version>
   <description>The monitor package</description>
 
